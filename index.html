@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Me Contrata</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/fontawesome.min.css">
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container">
+        <nav class="header">
+            <div class="logo">
+                <h2>ME CONTRATA</h2>
+            </div>
+            <div class="help">
+                <a href="">Ajuda</a>
+            </div>
+        </nav>
+        <div class="content">
+            <div class="list-title">
+                <div class="title">
+                    <img src="img/list-solid.svg" />
+                    <span>Contatos</span>
+                </div>
+                <div class="breadcomb">
+                    <ol>
+                        <li>Home</li>
+                        <li class="separator">/</li>
+                        <li>Contatos</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="list-container">
+                <div class="list-header">
+                    <div class="list-search-container">
+                        <input type="text" placeholder="Pesquisar" name="search" />
+                        <button type="button">
+                            <img src="img/search-solid.svg" />
+                        </button>
+                    </div>
+                    <div class="list-add-container">
+                        <button class="btn btn-add-modal">
+                            Adicionar usuário
+                        </button>
+                    </div>
+                </div>
+                <div class="table-wrapper">
+                    <table>
+                        <thead class="table-head">
+                            <tr>
+                                <th class="head-cell" scope="col">
+                                    Nome
+                                </th>
+                                <th class="head-cell" scope="col">
+                                    Canal
+                                </th>
+                                <th class="head-cell" scope="col">
+                                    Valor
+                                </th>
+                                <th class="head-cell" scope="col">
+                                    Observação
+                                </th>
+                                <th class="head-cell" scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-body">
+
+                        </tbody>
+                    </table>
+                    <div class="table-loading">
+                        <img src="img/loading.gif" />
+                        </td>
+                    </div>
+                </div>
+
+                <div id="myModal" class="modal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <span class="close">&times;</span>
+                            <h2>Adicionar contato</h2>
+                        </div>
+                        <div class="modal-body">
+                            <form id="contato-form" method="post">
+                                <input type="hidden" name="id" />
+                                <div class="form-group">
+                                    <label>Nome *</label>
+                                    <input type="text" name="nome" />
+                                    <div class="input-error"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Canal *</label>
+                                    <input type="text" name="canal" />
+                                    <div class="input-error"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Valor *</label>
+                                    <input type="text" name="valor" />
+                                    <div class="input-error"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Observação</label>
+                                    <textarea type="text" name="obs" rows="4"></textarea>
+                                    <div class="input-error"></div>
+                                </div>
+                                <div class="form-result"></div>
+                                <div class="form-action">
+                                    <button type="submit" class="btn">Salvar</button>
+                                    <div class="saving-loading">
+                                        Processando...
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+
+        <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-analytics.js"></script>
+
+        <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-database.js"></script>
+
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+        <script src="js/script.js"></script>
+</body>
+
+</html>
