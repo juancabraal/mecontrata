@@ -16,21 +16,9 @@ $(document).ready(function() {
 
 	var database = firebase.database();
 
-	function eraseForm() {
-		$("input[name='id']").val("");
-		$("input[name='nome']").val("");
-		$("input[name='canal']").val("");
-		$("input[name='valor']").val("");
-		$("textarea[name='obs']").val("");
-		$("textarea[name='obs']").html("");
-	}
-
-	function resetDivs() {
-		$(".input-error").css("display", "none");
-		$(".form-result").css("display", "none");
-		$("#contato-form button").removeAttr("disabled");
-		$(".saving-loading").css("display", "none");
-	}
+	var glide = new Glide(".glide", {
+		rewind: false
+	});
 
 	function getContatos() {
 		$(".table-loading").css("display", "flex");
@@ -42,23 +30,25 @@ $(document).ready(function() {
 			let tableRow = "";
 			let contatos = snapshot.val();
 
-			Object.keys(contatos).forEach(key => {
-				tableRow += formatTableRow(
-					key,
-					contatos[key].nome,
-					contatos[key].canal,
-					contatos[key].valor,
-					contatos[key].obs
-				);
-			});
+			if (contatos) {
+				Object.keys(contatos).forEach(key => {
+					tableRow += formatTableRow(
+						key,
+						contatos[key].nome,
+						contatos[key].canal,
+						contatos[key].valor,
+						contatos[key].obs
+					);
+				});
+			} else {
+				tableRow = formatEmptyTable();
+			}
 
 			$(".table-loading").css("display", "none");
 
 			$(".table-wrapper .table-body").html(tableRow);
 		});
 	}
-
-	getContatos();
 
 	function formatTableRow(id, nome, canal, valor, obs) {
 		return `
@@ -78,11 +68,59 @@ $(document).ready(function() {
                 </td>
                 <td>
                     <button type="button" class="btn-edit-modal">
-                        <img src="img/edit-solid.svg" />
+                        <i class="fas fa-edit"></i>
                     </button>
                 </td>
             </tr>
         `;
+	}
+
+	function formatEmptyTable() {
+		return `
+            <tr>
+				<td colspan="5" class="empty-row">Nenhum contato adicionado</td>
+			</tr>
+        `;
+	}
+
+	getContatos();
+
+	function eraseForm() {
+		$("input[name='id']").val("");
+		$("input[name='nome']").val("");
+		$("input[name='canal']").val("");
+		$("input[name='valor']").val("");
+		$("textarea[name='obs']").val("");
+		$("textarea[name='obs']").html("");
+	}
+
+	function resetDivs() {
+		$(".input-error").css("display", "none");
+		$(".form-result").css("display", "none");
+		$("#contato-form button").removeAttr("disabled");
+		$(".saving-loading").css("display", "none");
+	}
+
+	function tutorialSlide() {
+		glide.on("move.after", function() {
+			var index = glide.index;
+
+			if (index === 0) {
+				$(".tutorial-button-prev").css("visibility", "hidden");
+			} else {
+				$(".tutorial-button-prev").css("visibility", "visible");
+			}
+
+			if (index === 2) {
+				$(".tutorial-finish").css("display", "block");
+				$(".tutorial-button-next").css("display", "none");
+			} else {
+				$(".tutorial-finish").css("display", "none");
+				$(".tutorial-button-next").css("display", "block");
+			}
+		});
+
+		glide.mount();
 	}
 
 	$("body").on("click", ".btn-edit-modal", function() {
@@ -131,6 +169,44 @@ $(document).ready(function() {
 
 	$("body").on("click", ".close", function() {
 		$(".modal").css("display", "none");
+	});
+
+	$("body").on("click", ".tutorial-finish", function() {
+		$(".tutorial").css("display", "none");
+
+		localStorage.setItem("tutorialFinished", "true");
+	});
+
+	$("body").on("click", ".apresentacao-fechar", function() {
+		$(".apresentacao").css("display", "none");
+
+		var tutorialFinished = localStorage.getItem("tutorialFinished");
+
+		if (tutorialFinished === null) {
+			$(".tutorial").css("display", "flex");
+
+			tutorialSlide();
+		}
+	});
+
+	$("body").on("click", ".tutorial-open", function() {
+		$(".tutorial-button-prev").css("visibility", "hidden");
+		$(".tutorial-finish").css("display", "none");
+		$(".tutorial-button-next").css("display", "block");
+
+		var tutorialFinished = localStorage.getItem("tutorialFinished");
+
+		if (tutorialFinished !== null) {
+			$(".tutorial").css("display", "flex");
+
+			tutorialSlide();
+
+			glide.go("<<");
+		} else {
+			glide.go("<<");
+
+			$(".tutorial").css("display", "flex");
+		}
 	});
 
 	$("body").on("submit", "#contato-form", function(event) {

@@ -6,24 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Me Contrata</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/fontawesome.min.css">
-    <link href="css/style.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap">
+
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css"
+        integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/glide.core.min.css" />
+
+    <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
     <div class="container">
         <nav class="header">
             <div class="logo">
-                <h2>ME CONTRATA</h2>
+                <img src="img/logo-branca.png" />
             </div>
             <div class="help">
-                <a href="">Ajuda</a>
+                <button class="tutorial-open"><i class="fas fa-question"></i> Ajuda</button>
             </div>
         </nav>
         <div class="content">
             <div class="list-title">
                 <div class="title">
-                    <img src="img/list-solid.svg" />
+                    <i class="fas fa-list"></i>
                     <span>Contatos</span>
                 </div>
                 <div class="breadcomb">
@@ -36,15 +45,9 @@
             </div>
             <div class="list-container">
                 <div class="list-header">
-                    <div class="list-search-container">
-                        <input type="text" placeholder="Pesquisar" name="search" />
-                        <button type="button">
-                            <img src="img/search-solid.svg" />
-                        </button>
-                    </div>
                     <div class="list-add-container">
                         <button class="btn btn-add-modal">
-                            Adicionar usuário
+                            Adicionar contato
                         </button>
                     </div>
                 </div>
@@ -72,8 +75,7 @@
                         </tbody>
                     </table>
                     <div class="table-loading">
-                        <img src="img/loading.gif" />
-                        </td>
+                        <i class="fas fa-spinner fa-spin"></i>
                     </div>
                 </div>
 
@@ -110,7 +112,7 @@
                                 <div class="form-action">
                                     <button type="submit" class="btn">Salvar</button>
                                     <div class="saving-loading">
-                                        Processando...
+                                        <i class="fas fa-spinner fa-spin"></i> <span>Processando...</span>
                                     </div>
                                 </div>
                             </form>
@@ -120,6 +122,66 @@
             </div>
         </div>
 
+        <div class="tutorial">
+            <div class="slider-wrapper">
+                <div class="glide">
+                    <div class="glide__track" data-glide-el="track">
+                        <ul class="glide__slides">
+                            <li class="glide__slide swipe-item">
+                                <img src="img/logo-preta.png" />
+                                <h4>Seja bem-vindo ao ME CONTRATA</h4>
+                                <div class="explanation">
+                                    Um pequeno sistema para gerenciar a adição e edição de contatos.
+                                </div>
+                            </li>
+                            <li class="glide__slide swipe-item second">
+                                <img src="img/tutorial-2.png" />
+                                <h4>Sobre o sistema</h4>
+                                <div class="explanation">
+                                    Para adicionar um novo contato é só clicar em <strong>Adicionar contato</strong>.
+                                    Logo
+                                    após
+                                    a adição, o registro irá aparecer na tabela.
+                                </div>
+                            </li>
+                            <li class="glide__slide swipe-item third">
+                                <img src="img/tutorial-3.png" />
+                                <h4>Dúvidas</h4>
+                                <div class="explanation">
+                                    Caso fique com dúvidas, e quiser ver novamente esse tutorial, clique no botão
+                                    <strong>Ajuda</strong> que está localizado no canto superior direto da página.
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="glide__arrows slider-action" data-glide-el="controls">
+                        <button class="glide__arrow glide__arrow--left tutorial-button-prev" data-glide-dir="<"><i
+                                class="fas fa-arrow-left"></i></button>
+                        <button class="glide__arrow glide__arrow--right tutorial-button-next" data-glide-dir=">"><i
+                                class="fas fa-arrow-right"></i></button>
+                        <button class="tutorial-finish"><i class="fas fa-check"></i> Concluir</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="apresentacao">
+            <div class="logo">
+                <img src="img/logo-branca.png" />
+            </div>
+            <div class="titulo">
+                <h2>Olá, Gestor.</h2>
+                <h4>Tudo bem? Espero que você tenha um ótimo dia.</h4>
+                <p>
+                    Estou aqui em fortes orações na expectativa que você goste do site e me contrate.
+                </p>
+            </div>
+
+            <img src="https://media.giphy.com/media/kkpWcU9XgFIUE/giphy.gif" />
+
+            <button class="apresentacao-fechar">Ir para o site</button>
+        </div>
+
         <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
 
         <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-analytics.js"></script>
@@ -127,6 +189,8 @@
         <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-database.js"></script>
 
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+        <script src="js/glide.min.js"></script>
 
         <script src="js/script.js"></script>
 </body>
