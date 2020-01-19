@@ -519,6 +519,12 @@ body {
 	background-color: rgba(0, 0, 0, 0.4);
 }
 
+.modal-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
 .modal-header,
 .modal-body {
 	padding: 16px;
